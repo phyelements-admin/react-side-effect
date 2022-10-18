@@ -1,20 +1,38 @@
 import logo from './logo.svg';
 import './App.css';
-import { useState, useEffect} from 'react';
+import { useState, useEffect,useReducer} from 'react';
+function changer(state,action) {
+  console.log(action);
+  switch(action){
+    case 'increment':
+      return {count:state.count+1};
+    case 'decrement':
+      return {count:state.count-1};
+      
+  }
+ 
+  
+ 
 
+}
 function App() {
   console.log("rendered");
-  const[text,setText] = useState('home');
-  // below useEffect executes only when first time component rendered
-  // useEffect(()=>{console.log("button is clicked")},[]);
-  //  this useEffect executes only when text get change  
-  useEffect(()=>{console.log("button is clicked")},[text]);
+  const[no,setNo] = useReducer(changer,{count:0});
+  const decrement = ()=>{
+    setNo('decrement');
+
+  }
+  const increment = ()=>{
+    setNo('increment');
+
+  }
 
   return (
     <div className="App">
-      <button onClick={()=>{setText('home')}}>Home</button>
-      <button onClick={()=>{setText('about')}}>About</button>
-      <h1>{text}</h1>
+      <button  width="200px" onClick={decrement} className="Btn">-</button>
+      <span>{no.count}</span>
+      <button onClick={increment} className="Btn">+</button>
+      
     </div>
   );
 }
