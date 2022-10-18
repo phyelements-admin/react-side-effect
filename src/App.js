@@ -1,21 +1,31 @@
 import logo from './logo.svg';
 import './App.css';
 import { useState, useEffect} from 'react';
+function Example(props){
+  return(
+    <>
+  <h1>{props.text}</h1>
+   {props.children};
+  </>
+  );
+  
+
+}
 
 function App() {
-  console.log("rendered");
-  const[text,setText] = useState('home');
-  // below useEffect executes only when first time component rendered
-  // useEffect(()=>{console.log("button is clicked")},[]);
-  //  this useEffect executes only when text get change  
-  useEffect(()=>{console.log("button is clicked")},[text]);
-
   return (
+    <>
+    <Example text="Component Composition" >
+       
+      <h1>Example Child 1</h1>
+      <h2>Example Child 2</h2>
+    </Example>
     <div className="App">
-      <button onClick={()=>{setText('home')}}>Home</button>
-      <button onClick={()=>{setText('about')}}>About</button>
-      <h1>{text}</h1>
+      <button >Home</button>
+      <button >About</button>
+    
     </div>
+    </>
   );
 }
 
