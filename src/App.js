@@ -1,23 +1,20 @@
 import logo from './logo.svg';
 import './App.css';
+import { useState, useEffect} from 'react';
 
 function App() {
+  console.log("rendered");
+  const[text,setText] = useState('home');
+  // below useEffect executes only when first time component rendered
+  // useEffect(()=>{console.log("button is clicked")},[]);
+  //  this useEffect executes only when text get change  
+  useEffect(()=>{console.log("button is clicked")},[text]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <button onClick={()=>{setText('home')}}>Home</button>
+      <button onClick={()=>{setText('about')}}>About</button>
+      <h1>{text}</h1>
     </div>
   );
 }
